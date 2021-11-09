@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Transpiler implements Expr.Visitor<Object>, Stmt.Visitor<Void>{
+public class Compiler implements Expr.Visitor<Object>, Stmt.Visitor<Void>{
 	final Environment globals = new Environment();
 	private Environment environment = globals;
 	private final Map<Expr, Integer> locals = new HashMap<>();
 	private Object value;
 	
-	void transpile(List<Stmt> statements) { 
+	void compile(List<Stmt> statements) { 
 		try {                                
 		      for (Stmt statement : statements) {
 		        execute(statement);              
@@ -25,7 +25,7 @@ public class Transpiler implements Expr.Visitor<Object>, Stmt.Visitor<Void>{
 		    }
 	  }
 	
-	 Transpiler() {                                          
+	 Compiler() {                                          
 		    globals.define("clock", new LangCallable() {            
 		      @Override                                            
 		      public int arity() { return 0; }
