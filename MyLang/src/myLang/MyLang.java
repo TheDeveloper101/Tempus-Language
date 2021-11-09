@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class MyLang {
-	private static final Transpiler transpiler = new Transpiler();
+	private static final Compiler compiler = new Compiler();
 	static boolean hadError = false;
 	static boolean hadRuntimeError = false;
 
@@ -54,13 +54,13 @@ public class MyLang {
 		    //Stop of there was a syntax error
 		    if (hadError) return;
 		    
-		    Resolver resolver = new Resolver(transpiler);
+		    Resolver resolver = new Resolver(compiler);
 		    resolver.resolve(statements);
 		    
 		    //Stop if there was a resolution error.
 		    if (hadError) return;
 		    
-		    transpiler.transpile(statements);
+		    compiler.compile(statements);
 		    }                                         
 		  
 	
