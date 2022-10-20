@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface LangCallable {
 	int arity();
-	  Object call(Transpiler transpiler, List<Object> arguments);
+	  Object call(Compiler compiler, List<Object> arguments);
 
 }

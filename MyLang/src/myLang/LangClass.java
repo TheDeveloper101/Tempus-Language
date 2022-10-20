@@ -33,11 +33,11 @@ public class LangClass implements LangCallable{
 	  }
 	  
 	  @Override                                                            
-	  public Object call(Transpiler transpiler, List<Object> arguments) {
+	  public Object call(Compiler compiler, List<Object> arguments) {
 	    LangInstance instance = new LangInstance(this); 
 	    LangFunction initializer = findMethod("init");
 	    if (initializer != null) {
-	    	initializer.bind(instance).call(transpiler, arguments);
+	    	initializer.bind(instance).call(compiler, arguments);
 	    }
 	    return instance;                                                   
 	  }

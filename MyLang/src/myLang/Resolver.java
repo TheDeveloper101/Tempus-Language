@@ -7,13 +7,13 @@ import java.util.Stack;
 
 
 public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void>{
-	private final Transpiler transpiler;
+	private final Compiler compiler;
 	private final Stack<Map<String, Boolean>> scopes = new Stack<>();
 	private FunctionType currentFunction = FunctionType.NONE;
 	private LoopType currentLoop = LoopType.NONE;
 	
-	Resolver(Transpiler transpiler) {
-		this.transpiler = transpiler;
+	Resolver(Compiler compiler) {
+		this.compiler = compiler;
 	}
 	
 	private enum FunctionType {
@@ -64,7 +64,7 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void>{
 	    Map<String, Boolean> scope = scopes.peek();
 	    if (scope.containsKey(name.lexeme)) {
 	    	MyLang.error(name, 
-	    			"Variable wit this name already declared in this scope.");
+	    			"Variable with this name already declared in this scope.");
 	    }
 	    scope.put(name.lexeme, false);             
 	  }  
@@ -92,7 +92,7 @@ public class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void>{
 	private void resolveLocal(Expr expr, Token name) {     
 	    for (int i = scopes.size() - 1; i >= 0; i--) {       
 	      if (scopes.get(i).containsKey(name.lexeme)) {      
-	        transpiler.resolve(expr, scopes.size() - 1 - i);
+	        compiler.resolve(expr, scopes.size() - 1 - i);
 	        return;                                          
 	      }                                                  
 	    }

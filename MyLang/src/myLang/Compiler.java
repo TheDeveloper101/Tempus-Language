@@ -31,7 +31,7 @@ public class Compiler implements Expr.Visitor<Object>, Stmt.Visitor<Void>{
 		      public int arity() { return 0; }
 
 		      @Override                                            
-		      public Object call(Transpiler interpreter,          
+		      public Object call(Compiler interpreter,          
 		                         List<Object> arguments) {         
 		        return (double)System.currentTimeMillis() / 1000.0;
 		      }                                                    
@@ -48,7 +48,7 @@ public class Compiler implements Expr.Visitor<Object>, Stmt.Visitor<Void>{
 				}
 
 				@Override
-				public Object call(Transpiler transpiler, List<Object> arguments) {
+				public Object call(Compiler transpiler, List<Object> arguments) {
 					value = arguments.get(0);
 					if(value instanceof String) {
 						return "String";

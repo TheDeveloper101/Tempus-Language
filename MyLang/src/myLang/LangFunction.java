@@ -22,7 +22,7 @@ public class LangFunction implements LangCallable {
 	}
 	
 	@Override
-	public Object call(Transpiler interpreter, List<Object> arguments) {
+	public Object call(Compiler interpreter, List<Object> arguments) {
 	    Environment environment = new Environment(closure);    
 	    for (int i = 0; i < declaration.params.size(); i++) {              
 	      environment.define(declaration.params.get(i).lexeme,             
